@@ -1,7 +1,6 @@
 # Things I want
 
 - 3 finger swipe to go back in browser
-- Permanent gamma of .85 or so in daylight mode
 - Way to check displays without opening 'Displays' (needed when monitor unplugs)
 - Way to just scale Reaper (like on the Mac)
 
@@ -31,10 +30,11 @@ Note that if you change from X to wayland on login you'll have to reset this stu
 
 This seems to fix washed out colors on external monitor (haven't tested locally yet):
 
-`xrandr --output HDMI-2 --set "Broadcast RGB" "Full"`
+`xrandr --output HDMI2 --set "Broadcast RGB" "Full"`
 
-Added to ~/.xinitrc
-
+Added to ~/.xinitrc, but that didn't seem to work. TODO: figure out where to
+put it. Note that updates changed the output name (from HDMI-2 to HDMI2), will
+need to keep an eye on that.
 
 ## Crappy wifi
 
@@ -90,9 +90,6 @@ One way to evaluate this may be to see if these errors occur at set intervals (l
 approx. 2:20 after starting to record). For now, I'm trying to follow [these
 rules](https://unix.stackexchange.com/questions/111593/allow-non-root-user-to-read-write-dev-files) to see if it fixes this. Oh yeah, the monitoring is in reaper CL messages.
 	 
-
-
-
 ## Bluetooth
 
 Seems to stop computer from sleeping, or takes enough power when asleep that it
@@ -126,7 +123,13 @@ blacklist snd-fireface
 blacklist snd-firewire-motu
 ```
 
-3. Setup JACK via qjackctl (or otherwise):
+3. Set irq priority. 
+
+Find irq using e.q. `cat /proc/interrupts | grep firewire`. Add it to
+`RTIRQ_NAME_LIST` var in `/etc/default/rtirq`.
+
+
+4. Setup JACK via qjackctl (or otherwise):
 
   1. Select firewire
   2. Check start on startup, save config to, enable sequencer support,
@@ -230,6 +233,18 @@ Supposed to be plug and play
 sudo apt install tlp
 and maybe also
 sudo apt isntall acpi-call-dkms
+
+Settings are in /etc/default/tlp. One thing I've changed to help with audio
+performance is uncommenting the `CPU_SCALING_GOVERNOR...` options and setting
+powersave for battery and performance for AC. Note that I do not know at this
+time if other programs will interfere with this setting.
+
+Note that there's also some options for turbo boost. I left them alone but
+ubuntu studio GUI notes that turbo boost should be __off__ for audio work. Not
+sure why, haven't read it elsewhere, will have to read up. But even so, we
+might want to just change it manually if it becomes a problem, since I could
+see benefitting from this feature for modeling and such.
+
 
 ### System-monitor
 Not gnome system monitor. Requires GNOME Shell integration extension for chrome (or ff, if you even use that). So install the extensions, then run
