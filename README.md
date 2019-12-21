@@ -32,9 +32,8 @@ This seems to fix washed out colors on external monitor (haven't tested locally 
 
 `xrandr --output HDMI2 --set "Broadcast RGB" "Full"`
 
-Added to ~/.xinitrc, but that didn't seem to work. TODO: figure out where to
-put it. Note that updates changed the output name (from HDMI-2 to HDMI2), will
-need to keep an eye on that.
+Added to ~/.xinitrc, but that didn't seem to work. So I tried `/etc/X11/Xsession.d/` and added a file (99 something).
+Note that updates changed the output name (from HDMI-2 to HDMI2), will need to keep an eye on that.
 
 ## Crappy wifi
 
