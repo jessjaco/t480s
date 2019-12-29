@@ -17,6 +17,10 @@ On gnome 3.32 fractional scaling settings under wayland looked fuzzy in some pro
 
 Note that if you change from X to wayland on login you'll have to reset this stuff.
 
+### Font size in console
+
+Run `sudo dpkg-reconfigure console-setup` (yes you have a framebuffer)
+
 ### Washed out colors
 
 This seems to fix washed out colors on external monitor (haven't tested locally yet):
