@@ -270,6 +270,10 @@ Note that even with the undervolting values set at zero trip temp for throttling
 raised. Undervolting values can be set in the conf file (followed by a corresponding `systemctl restart...`) and effects 
 can be monitored using s-tui and lenovo_fix.
 
+Could undervolt to -110 on AC but nothing above -90 on battery seems to be stable. So rn I've got the core settings at -95 
+for AC and -90 for battery. Will monitor and perhaps reduce the AC but I'm ?not sure how quick the new settings take 
+effect?. In lenovo_fix.py it notes switch to battery right away though.
+
 Note that thermald can also be disabled (doesn't look like it is needed since throttling is controlled at the bios level).
 
 Also see:
