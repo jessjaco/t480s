@@ -1,8 +1,3 @@
-# Things I want
-
-- 3 finger swipe to go back in browser
-- Way to just scale Reaper (like on the Mac)
-
 # Things to check
 
 - What's going on with python packages, a lotta this stuff installs them
@@ -278,3 +273,11 @@ Note that thermald can also be disabled (doesn't look like it is needed since th
 
 Also see:
 https://forums.lenovo.com/t5/Other-Linux-Discussions/X1C6-T480s-low-cTDP-and-trip-temperature-in-Linux/td-p/4028489/page/28
+
+
+# Things fixed by themselves (via upgrades)
+
+- 3 finger swipe to go back in browser (works in ermine, might depend on gestures??)
+- Way to just scale Reaper (Now fixed in version 6 [as yet untested though])
+
+
