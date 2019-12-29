@@ -1,16 +1,12 @@
 # Things I want
 
 - 3 finger swipe to go back in browser
-- Way to check displays without opening 'Displays' (needed when monitor unplugs)
 - Way to just scale Reaper (like on the Mac)
 
 # Things to check
 
 - What's going on with python packages, a lotta this stuff installs them
 
-
-# Things to do
-- Setup the undervolting (see github.com/erpalma/throttled)
 
 # Setup
 
@@ -254,12 +250,27 @@ sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1
 
 
 ### s-tui
-Command line stress tester. Doesn't appear to be able to stress rn though (maybe needs to be plugged in?)
-
-sudo apt install s-tui
+Command line stress tester. Needs `stress` program to test. Was getting some errors from apt install, so I recommend direct 
+clone of repo and manual install. To witness faulty throttling, simply stress test and note how core frequencies drop 
+as soon as the core temps reach 80c. 
 
 ### throttled
 sudo apt install git build-essential python3-dev libdbus-glib-1-dev libgirepository1.0-dev libcairo2-dev python3-venv python3-wheel
-git clone https://github.com/erpalma/lenovo-throttling-fix.git
-sudo ./lenovo-throttling-fix/install.sh
 
+
+git clone https://github.com/erpalma/lenovo-throttling-fix.git
+`sudo ./lenovo-throttling-fix/install.sh`
+
+Configuration is in /etc/lenovo_fix.conf. Status can be checked with 
+`systemctl status lenovo_fix`
+and more directly with
+`./lenovo_fix.py --monitor`
+
+Note that even with the undervolting values set at zero trip temp for throttling is raised to 95c and the allowed wattage is
+raised. Undervolting values can be set in the conf file (followed by a corresponding `systemctl restart...`) and effects 
+can be monitored using s-tui and lenovo_fix.
+
+Note that thermald can also be disabled (doesn't look like it is needed since throttling is controlled at the bios level).
+
+Also see:
+https://forums.lenovo.com/t5/Other-Linux-Discussions/X1C6-T480s-low-cTDP-and-trip-temperature-in-Linux/td-p/4028489/page/28
