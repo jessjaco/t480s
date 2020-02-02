@@ -70,6 +70,10 @@ sudo apt-get update
 sudo apt-get install gdal-bin qgis
 ```
 
+## google-cloud-sdk
+
+Installation via apt was limited, so I downloaded the official sdk from [here](https://cloud.google.com/sdk/docs/quickstart-linux), put in `/opt` (changing permissions to 777), then ran the install.sh script as each user.
+
 ## Power Management
 
 ### Powerstat
