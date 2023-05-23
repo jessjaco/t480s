@@ -25,6 +25,8 @@ This seems to fix washed out colors on external monitor (haven't tested locally 
 Added to ~/.xinitrc, but that didn't seem to work. So I tried `/etc/X11/Xsession.d/` and added a file (originally 99... but
 that didn't work so I changed it to 45... and that worked). Note that updates changed the output name (from HDMI-2 to HDMI2), will need to keep an eye on that.
 
+The above only works on X11. For wayland, you can follow [this blog post](https://www.onetransistor.eu/2021/08/hdmi-picture-quantization-range-linux.html). In my case I had to add the line `ExecStartPre=-/usr/bin/proptest -M i915 -D /dev/dri/card0 236 connector 238 1` to `/lib/systemd/system/gdm.service`. (Admittedly this was on a different system).
+
 ## Crappy wifi
 
 edit /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf 
