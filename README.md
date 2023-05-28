@@ -1,7 +1,3 @@
-# Things to check
-
-- What's going on with python packages, a lotta this stuff installs them
-
 # Setup
 
 ## Display
